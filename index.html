@@ -1,12 +1,259 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-    <meta charset="UTF-8">
-    <title>Redirecionando...</title>
-    <!-- Substitua a URL abaixo pelo seu link de destino -->
-    <meta http-equiv="refresh" content="0; url=https://salmovet.heartypixie1.chatgpt.site">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>SalmoVet — Salmonella spp.</title>
+<style>
+:root{
+  --green:#167a4a; --dark:#105b38; --light:#eff8df; --cream:#fffdf3;
+  --lime:#dff0b9; --text:#19352a; --danger:#d94c45; --white:#fff;
+}
+*{box-sizing:border-box}
+body{margin:0;font-family:Arial,Helvetica,sans-serif;background:linear-gradient(135deg,#dceec3,#f9f6df);color:var(--text)}
+.app{max-width:430px;min-height:100vh;margin:auto;background:var(--cream);box-shadow:0 0 35px #0002;position:relative;overflow:hidden}
+header{height:58px;padding:15px 18px;display:flex;align-items:center;justify-content:space-between;border-bottom:1px solid #dbe7c8;background:#fffdf8;position:sticky;top:0;z-index:5}
+header button{border:0;background:none;font-size:24px;color:var(--dark);cursor:pointer}
+.logo-mini{font-weight:800;color:var(--green)}
+.screen{display:none;padding:24px 20px 95px;min-height:calc(100vh - 58px);animation:fade .2s ease}
+.screen.active{display:block}
+@keyframes fade{from{opacity:.3;transform:translateY(5px)}to{opacity:1;transform:none}}
+h1{font-size:32px;margin:8px 0 10px;color:var(--green)}
+h2{font-size:25px;color:var(--dark);margin:8px 0 16px}
+h3{margin:8px 0}
+p{line-height:1.5}
+.hero{text-align:center;padding-top:42px}
+.shield{width:110px;height:110px;border-radius:35px;background:var(--lime);display:grid;place-items:center;margin:auto;font-size:58px;box-shadow:0 10px 25px #0001}
+.tagline{font-weight:700;color:var(--dark);margin:20px 0}
+.btn{width:100%;padding:15px 18px;border:0;border-radius:16px;background:var(--green);color:white;font-size:16px;font-weight:800;cursor:pointer;margin-top:12px;box-shadow:0 5px 12px #167a4a33}
+.btn.secondary{background:white;color:var(--green);border:2px solid var(--green)}
+.btn.small{width:auto;padding:10px 13px;margin:4px}
+.card{background:white;border:1px solid #e0e9d3;border-radius:20px;padding:16px;margin:12px 0;box-shadow:0 5px 18px #0000000a}
+.grid{display:grid;grid-template-columns:repeat(2,1fr);gap:10px}
+.item{background:var(--light);border-radius:16px;padding:14px;text-align:center;font-weight:700}
+.icon{font-size:30px;display:block;margin-bottom:5px}
+.list{padding:0;margin:0;list-style:none}
+.list li{background:white;border-radius:14px;padding:13px;margin:8px 0;border-left:5px solid var(--green)}
+.warning{background:#fff0d8;border-left:5px solid #e6a52d;padding:13px;border-radius:12px}
+.danger{background:#ffe7e4;border-left:5px solid var(--danger);padding:13px;border-radius:12px}
+.progress{height:8px;background:#e4ecd8;border-radius:20px;overflow:hidden;margin:10px 0 20px}
+.progress span{display:block;height:100%;background:var(--green);width:0}
+.option{display:block;width:100%;padding:13px;margin:9px 0;border:2px solid #d9e6ce;background:white;border-radius:13px;text-align:left;font-size:15px;cursor:pointer}
+.option.correct{border-color:var(--green);background:#e4f5d9}
+.option.wrong{border-color:var(--danger);background:#ffe5e2}
+.result{text-align:center;padding-top:35px}
+.trophy{font-size:75px}
+footer{position:fixed;bottom:0;left:50%;transform:translateX(-50%);width:min(430px,100%);background:#fffdf8;border-top:1px solid #dbe7c8;display:flex;justify-content:space-around;padding:9px 5px;z-index:5}
+footer button{border:0;background:none;color:#456;font-size:12px;cursor:pointer}
+footer span{display:block;font-size:21px}
+.ref{font-size:13px;word-break:break-word}
+.hidden{display:none!important}
+.badge{display:inline-block;background:var(--lime);color:var(--dark);padding:7px 11px;border-radius:99px;font-weight:800;font-size:12px}
+</style>
 </head>
 <body>
-    <p>Se você não for redirecionado automaticamente, <a href="https://salmovet.heartypixie1.chatgpt.site">clique aqui</a>.</p>
+<div class="app">
+<header>
+  <button id="backBtn" onclick="back()" aria-label="Voltar">‹</button>
+  <div class="logo-mini">🦠 SalmoVet</div>
+  <button onclick="go('home')" aria-label="Início">⌂</button>
+</header>
+
+<section id="home" class="screen active hero">
+  <div class="shield">🦠</div>
+  <h1>SalmoVet</h1>
+  <h3>Conhecendo a <i>Salmonella spp.</i></h3>
+  <p class="tagline">Conheça • Previna • Proteja</p>
+  <p>Aplicativo educativo sobre Salmonella spp. na Medicina Veterinária, com foco em transmissão, biossegurança e Saúde Única.</p>
+  <button class="btn" onclick="go('what')">COMEÇAR →</button>
+  <button class="btn secondary" onclick="go('menu')">VER MENU</button>
+</section>
+
+<section id="menu" class="screen">
+<h2>Menu principal</h2>
+<p>Escolha um tema para explorar:</p>
+<div class="grid">
+  <div class="item" onclick="go('what')"><span class="icon">🦠</span>O que é?</div>
+  <div class="item" onclick="go('animals')"><span class="icon">🐾</span>Animais</div>
+  <div class="item" onclick="go('symptoms')"><span class="icon">⚠️</span>Sinais</div>
+  <div class="item" onclick="go('transmission')"><span class="icon">🔄</span>Transmissão</div>
+  <div class="item" onclick="go('food')"><span class="icon">🍗</span>Alimentos</div>
+  <div class="item" onclick="go('biosafety')"><span class="icon">🧼</span>Biossegurança</div>
+  <div class="item" onclick="go('vet')"><span class="icon">👩‍⚕️</span>Veterinário</div>
+  <div class="item" onclick="go('onehealth')"><span class="icon">🌎</span>Saúde Única</div>
+  <div class="item" onclick="startQuiz()"><span class="icon">🧠</span>Quiz</div>
+  <div class="item" onclick="go('refs')"><span class="icon">📚</span>Referências</div>
+</div>
+</section>
+
+<section id="what" class="screen">
+<h2>🦠 O que é <i>Salmonella spp.</i>?</h2>
+<div class="card"><p><i>Salmonella</i> é um gênero de bactérias da família Enterobacteriaceae. É um grupo de bactérias Gram-negativas, geralmente em formato de bastonete, com importância veterinária e em saúde pública.</p></div>
+<h3>Características</h3>
+<ul class="list">
+<li>🔬 Bactéria Gram-negativa</li>
+<li>🧫 Formato de bastonete</li>
+<li>🦠 Família Enterobacteriaceae</li>
+<li>🐾 Pode acometer diferentes espécies animais</li>
+<li>🌎 Possui importância em Saúde Única</li>
+</ul>
+<button class="btn" onclick="go('animals')">PRÓXIMO →</button>
+</section>
+
+<section id="animals" class="screen">
+<h2>🐾 Salmonella nos animais</h2>
+<p>Diferentes espécies podem estar envolvidas na cadeia de transmissão.</p>
+<div class="grid">
+<div class="item"><span class="icon">🐶</span>Cães</div><div class="item"><span class="icon">🐱</span>Gatos</div>
+<div class="item"><span class="icon">🐔</span>Aves</div><div class="item"><span class="icon">🐄</span>Bovinos</div>
+<div class="item"><span class="icon">🐷</span>Suínos</div><div class="item"><span class="icon">🐴</span>Equinos</div>
+<div class="item"><span class="icon">🐢</span>Répteis</div><div class="item"><span class="icon">🐑</span>Ovinos</div>
+</div>
+<div class="warning"><b>Importante:</b> alguns animais podem atuar como portadores e eliminar a bactéria sem apresentar sinais clínicos evidentes.</div>
+<button class="btn" onclick="go('symptoms')">VER SINAIS CLÍNICOS →</button>
+</section>
+
+<section id="symptoms" class="screen">
+<h2>⚠️ Sinais clínicos</h2>
+<p>A manifestação pode variar conforme a espécie, o agente e as condições do animal.</p>
+<ul class="list">
+<li>💩 Diarreia</li><li>🤮 Vômitos</li><li>🌡️ Febre</li><li>😴 Apatia</li><li>🍽️ Redução do apetite</li><li>💧 Desidratação</li>
+</ul>
+<div class="warning">Em quadros graves podem ocorrer manifestações sistêmicas. Sinais clínicos isolados não confirmam salmonelose: é necessária avaliação veterinária.</div>
+<button class="btn" onclick="go('transmission')">COMO É TRANSMITIDA? →</button>
+</section>
+
+<section id="transmission" class="screen">
+<h2>🔄 Transmissão</h2>
+<div class="card" style="text-align:center;font-size:18px">
+<div>🐾 Animal infectado</div><div>⬇️</div><div>💩 Fezes</div><div>⬇️</div><div>💧 Água • 🍗 Alimento • 🌱 Ambiente</div><div>⬇️</div><div>🐶 Outro animal / 👤 Pessoa</div>
+</div>
+<p>A transmissão está frequentemente relacionada à contaminação fecal e ao contato ou consumo de água, alimentos e ambientes contaminados.</p>
+<div class="danger"><b>⚠️ Atenção:</b> Salmonella é uma zoonose: pode ser transmitida entre animais e seres humanos.</div>
+<button class="btn" onclick="go('food')">VER ALIMENTOS →</button>
+</section>
+
+<section id="food" class="screen">
+<h2>🍗 Alimentos</h2>
+<p>Quando contaminados, alguns alimentos podem participar da transmissão:</p>
+<div class="grid">
+<div class="item">🥚<br>Ovos</div><div class="item">🍗<br>Carnes e aves</div>
+<div class="item">🥛<br>Leite e derivados</div><div class="item">🐟<br>Pescados</div>
+<div class="item">🥗<br>Vegetais</div><div class="item">🍖<br>Alimentos crus</div>
+</div>
+<div class="danger"><b>Contaminação cruzada:</b> mantenha alimentos crus separados de alimentos prontos e higienize adequadamente utensílios e superfícies.</div>
+<button class="btn" onclick="go('biosafety')">BIOSSEGURANÇA →</button>
+</section>
+
+<section id="biosafety" class="screen">
+<h2>🧼 Biossegurança</h2>
+<p>Medidas simples ajudam a reduzir o risco de disseminação.</p>
+<ul class="list">
+<li>🧼 Higienizar as mãos</li><li>🥼 Utilizar EPIs quando indicados</li><li>🧽 Realizar limpeza e desinfecção adequadas</li>
+<li>🚧 Separar materiais contaminados</li><li>🐾 Fazer manejo adequado dos animais</li><li>🔄 Evitar contaminação cruzada</li><li>🗑️ Destinar resíduos corretamente</li>
+</ul>
+<button class="btn" onclick="go('vet')">PAPEL DO VETERINÁRIO →</button>
+</section>
+
+<section id="vet" class="screen">
+<h2>👩‍⚕️ Papel do médico-veterinário</h2>
+<div class="card"><h3>O veterinário é fundamental!</h3>
+<ul class="list">
+<li>🔎 Identificação e avaliação de sinais</li><li>🔬 Investigação diagnóstica</li><li>🧫 Coleta e encaminhamento de amostras</li>
+<li>🧼 Orientação sobre biossegurança</li><li>🐄 Controle sanitário</li><li>👨‍👩‍👧 Orientação dos responsáveis</li>
+</ul></div>
+<p><b>Prevenir, diagnosticar, controlar e orientar também é cuidar.</b></p>
+<button class="btn" onclick="go('onehealth')">SAÚDE ÚNICA →</button>
+</section>
+
+<section id="onehealth" class="screen">
+<h2>🌎 Saúde Única</h2>
+<p style="text-align:center;font-weight:800">A saúde animal, humana e ambiental estão conectadas.</p>
+<div class="card" style="text-align:center">
+<div style="font-size:45px">🐾</div><b>ANIMAL</b>
+<div style="font-size:30px">↕</div>
+<div style="font-size:45px">👤</div><b>HUMANO</b>
+<div style="font-size:30px">↕</div>
+<div style="font-size:45px">🌱</div><b>AMBIENTE</b>
+</div>
+<p>A Salmonella é um exemplo de como a atuação veterinária pode ultrapassar o atendimento clínico e contribuir para a saúde coletiva.</p>
+<button class="btn" onclick="startQuiz()">TESTAR MEUS CONHECIMENTOS 🧠</button>
+</section>
+
+<section id="quiz" class="screen">
+<h2>🧠 Quiz SalmoVet</h2>
+<div class="progress"><span id="bar"></span></div>
+<div id="quizBox"></div>
+</section>
+
+<section id="result" class="screen result">
+<div class="trophy">🏆</div>
+<h2>Parabéns!</h2>
+<p id="scoreText"></p>
+<span class="badge">Guardião da Biossegurança</span>
+<button class="btn" onclick="startQuiz()">JOGAR NOVAMENTE</button>
+<button class="btn secondary" onclick="go('menu')">VOLTAR AO MENU</button>
+</section>
+
+<section id="refs" class="screen">
+<h2>📚 Referências</h2>
+<div class="card ref">
+<p><b>BRASIL. Ministério da Saúde.</b> Salmonella (Salmonelose). Gov.br.</p>
+<p><b>BRASIL. Ministério da Agricultura e Pecuária.</b> Salmonella — controle de patógenos. Gov.br.</p>
+<p><b>MSD Veterinary Manual.</b> Salmonellosis in Animals.</p>
+<p><b>BRASIL. Ministério da Saúde.</b> Materiais técnicos sobre doenças de transmissão hídrica e alimentar.</p>
+</div>
+<p class="badge">Conteúdo educativo — não substitui avaliação veterinária.</p>
+</section>
+
+<footer>
+<button onclick="go('home')"><span>🏠</span>Início</button>
+<button onclick="go('menu')"><span>☰</span>Menu</button>
+<button onclick="startQuiz()"><span>🧠</span>Quiz</button>
+<button onclick="go('refs')"><span>📚</span>Fontes</button>
+</footer>
+</div>
+
+<script>
+const screens=[...document.querySelectorAll('.screen')];
+let history=['home'], current='home';
+function go(id){
+  if(id===current)return;
+  screens.forEach(s=>s.classList.remove('active'));
+  document.getElementById(id).classList.add('active');
+  history.push(id); current=id;
+  window.scrollTo({top:0,behavior:'smooth'});
+}
+function back(){
+  if(history.length>1){history.pop();const id=history[history.length-1];screens.forEach(s=>s.classList.remove('active'));document.getElementById(id).classList.add('active');current=id;window.scrollTo(0,0);}
+}
+const questions=[
+ {q:'A Salmonella pertence a qual família?',o:['Staphylococcaceae','Enterobacteriaceae','Streptococcaceae','Bacillaceae'],a:1},
+ {q:'Uma importante via de transmissão é:',o:['Apenas pelo ar','Fecal-oral','Apenas por picada de insetos','Apenas pela saliva'],a:1},
+ {q:'Um animal pode eliminar Salmonella sem apresentar sinais clínicos?',o:['Verdadeiro','Falso'],a:0},
+ {q:'Qual atitude ajuda na prevenção?',o:['Não lavar as mãos','Compartilhar utensílios contaminados','Higienização adequada','Usar alimentos estragados'],a:2},
+ {q:'A Salmonella tem importância apenas para animais?',o:['Sim','Não, também possui importância em saúde pública','Somente para aves','Somente para cães'],a:1}
+];
+let qi=0,score=0;
+function startQuiz(){qi=0;score=0;go('quiz');renderQ();}
+function renderQ(){
+ const q=questions[qi], box=document.getElementById('quizBox');
+ document.getElementById('bar').style.width=((qi)/questions.length*100)+'%';
+ box.innerHTML=`<span class="badge">Pergunta ${qi+1} de ${questions.length}</span><h3 style="margin-top:18px">${q.q}</h3>`+
+ q.o.map((x,i)=>`<button class="option" onclick="answer(${i})">${String.fromCharCode(65+i)}) ${x}</button>`).join('');
+}
+function answer(i){
+ const q=questions[qi], opts=[...document.querySelectorAll('.option')];
+ opts.forEach((b,n)=>{b.disabled=true;if(n===q.a)b.classList.add('correct');if(n===i&&i!==q.a)b.classList.add('wrong')});
+ if(i===q.a)score++;
+ setTimeout(()=>{qi++;if(qi<questions.length)renderQ();else finishQuiz()},650);
+}
+function finishQuiz(){
+ document.getElementById('bar').style.width='100%';
+ document.getElementById('scoreText').innerHTML=`Você acertou <b>${score} de ${questions.length}</b> perguntas!<br><br>`+
+ (score===questions.length?'Excelente! Você dominou o conteúdo. 🦠🐾':score>=3?'Muito bem! Revise alguns pontos e tente novamente. 💚':'Continue estudando! O SalmoVet está aqui para ajudar. 📚');
+ go('result');
+}
+</script>
 </body>
 </html>
